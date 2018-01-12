@@ -17,13 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from cards import views
+from django.views.generic import TemplateView
 
 # for DRF
 router = routers.DefaultRouter()
 router.register(r'cards', views.CardViewSet)
 
 urlpatterns = [
-    path('', include('cards.urls')),
+    path('', TemplateView.as_view(template_name="index.html")),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/api-auth/', include('rest_framework.urls', namespace='rest_framework')),
