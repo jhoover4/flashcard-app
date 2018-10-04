@@ -1,14 +1,39 @@
-{% load render_bundle from webpack_loader %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Javascript Card App</title>
-  </head>
-  <body>
-    <div id="root">
+{%  extends 'layout.html' %}
+
+{% block content %}
+<div id="root">
+    <header class="App-header">
+        <img src="" class="App-logo" alt="logo"/>
+        <h1 class="title">${appTitle}</h1>
+        <h3>A study app by Jordan Hoover</h3>
+    </header>
+    <div class="flashcard-container">
+        <div class="flashcard">
+            <div class="front">
+                <h3>Card #${cardCount} - Question</h3>
+                <p>${cards[cardCount]}</p>
+            </div>
+            <div class="back">
+                <h3>Card #${cardCount} - Answer</h3>
+                <p>${cards[cardCount]}</p>
+            </div>
+        </div>
     </div>
-      {% render_bundle 'main' %}
-  </body>
-</html>
+    <footer>
+        <div class="score">
+            <ul>
+                <li>Correct:</li>
+                <li>${correct}</li>
+            </ul>
+            <ul>
+                <li>Wrong:</li>
+                <li>${wrong}</li>
+            </ul>
+        </div>
+        <div class="next-button">
+            <button v-on:click="increaseScore">I got it right ></button>
+            <button v-on:click="decreaseScore">I got it wrong ></button>
+        </div>
+    </footer>
+</div>
+{% endblock %}
