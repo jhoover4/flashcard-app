@@ -1,39 +1,49 @@
-{%  extends 'layout.html' %}
+{% extends 'layout.html' %}
 
 {% block content %}
-<div id="root">
-    <header class="App-header">
-        <img src="" class="App-logo" alt="logo"/>
-        <h1 class="title">${appTitle}</h1>
-        <h3>A study app by Jordan Hoover</h3>
-    </header>
-    <div class="flashcard-container">
-        <div class="flashcard">
-            <div class="front">
-                <h3>Card #${cardCount} - Question</h3>
-                <p>${cards[cardCount]}</p>
+    <div id="root">
+        <div class="jumbotron">
+            <h1 class="display-3">${appTitle}</h1>
+            <p class="lead">A study app by Jordan Hoover</p>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2>Guess the answers on the card!</h2>
+                    <div class="badges mb-4">
+                        <span class="badge badge-info">Correct: ${correct}</span>
+                        <span class="badge badge-danger">Wrong: ${wrong}</span>
+                    </div>
+                    <div class="flashcard-container">
+                        <div class="flashcard">
+                            <div class="front card border-primary mb-3 pb-5">
+                                <div class="card-header bg-primary">#${cardCount}</div>
+                                <div class="card-body">
+                                    <h4 class="card-title">${cards[cardCount - 1].title}</h4>
+                                    <p class="card-text">${cards[cardCount - 1].question}</p>
+                                </div>
+                            </div>
+                            <div class="back card border-info mb-3 pb-5">
+                                <div class="card-header bg-info">#${cardCount}</div>
+                                <div class="card-body">
+                                    <h4 class="card-title">${cards[cardCount - 1].title}</h4>
+                                    <p class="card-text">${cards[cardCount - 1].answer}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="back">
-                <h3>Card #${cardCount} - Answer</h3>
-                <p>${cards[cardCount]}</p>
+            <div class="row">
+                <div class="col-lg-8 mx-auto guess-buttons">
+                    <h3>Did you guess correctly?</h3>
+                    <div class="next-button">
+                        <button type="button" class="btn btn-info" v-on:click="increaseScore">Yes</button>
+                        <button type="button" class="btn btn-danger" v-on:click="decreaseScore">No</button>
+                        <button type="button" class="btn btn-secondary" v-on:click="skipCard">Skip</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <footer>
-        <div class="score">
-            <ul>
-                <li>Correct:</li>
-                <li>${correct}</li>
-            </ul>
-            <ul>
-                <li>Wrong:</li>
-                <li>${wrong}</li>
-            </ul>
-        </div>
-        <div class="next-button">
-            <button v-on:click="increaseScore">I got it right ></button>
-            <button v-on:click="decreaseScore">I got it wrong ></button>
-        </div>
-    </footer>
-</div>
 {% endblock %}

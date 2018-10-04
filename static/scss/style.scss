@@ -1,32 +1,5 @@
-//variables
-
-$color-background: #f9f349;
-$color-header: #8c2424;
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 80px;
-}
-
-.App-header {
-  background-color: $color-header;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
 .flashcard-container {
-	perspective: 1000px;
+  perspective: 1000px;
   &:hover .flashcard {
     transform: rotateY(180deg);
   }
@@ -40,15 +13,9 @@ $color-header: #8c2424;
   width: 700px;
   height: 250px;
   margin: 5% auto;
-  background-color: $color-background;
   box-shadow: 5px 5px 10px #888888;
-  border-radius: 15px;
   transition: 0.6s;
   transform-style: preserve-3d;
-  p {
-    color: black;
-    font-size: 2em;
-  }
 }
 
 .front,
@@ -58,25 +25,51 @@ $color-header: #8c2424;
   position: absolute;
   top: 0px;
   left: 0px;
-	backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .front {
-	z-index: 2;
-	transform: rotateY(0deg);
+  z-index: 2;
+  transform: rotateY(0deg);
 }
 
 .back {
-	transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
-footer{
-  ul {
-    padding: 0;
-    display: inline-block;
-    list-style-type: none;
+.flashes {
+  list-style-type: none;
+}
+
+.vertical-center {
+  min-height: 100%; /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+/** Sticky footer **/
+html {
+  position: relative;
+  min-height: 85%;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  .container {
+    margin-top: 4rem;
+    margin-bottom: 3rem;
   }
-  ul:nth-of-type(2) {
-    padding-left: 1%;
+  .portfolio {
+    text-align: center;
+  }
+  .portfolio p {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
   }
 }
