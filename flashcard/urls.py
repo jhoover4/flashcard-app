@@ -21,7 +21,8 @@ from django.views.generic import TemplateView
 
 # for DRF
 router = routers.DefaultRouter()
-router.register(r'cards', views.CardViewSet)
+router.register('cards', views.CardViewSet)
+router.register('subjects', views.SubjectViewSet)
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name="index.html")),

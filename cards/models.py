@@ -1,9 +1,19 @@
 from django.db import models
+from django.utils import timezone
 
-# Create your models here.
-class Cards(models.Model):
-    title = models.TextField()
-    content = models.TextField()
+
+class Subject(models.Model):
+    name = models.CharField(max_length=250)
 
     def __str__(self):
-        return self.title
+        return self.name
+
+
+class Card(models.Model):
+    subject = models.ForeignKey('Subject', on_delete=models.CASCADE, related_name='subjects')
+    question = models.TextField()
+    answer = models.TextField()
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.question

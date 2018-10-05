@@ -1,6 +1,15 @@
 from django.contrib import admin
 
-# Register your models here.
-from .models import Cards
+from .models import Card, Subject
 
-admin.site.register(Cards)
+
+class CardAdmin(admin.ModelAdmin):
+    list_display = ('question', 'subject')
+    list_editable = ['subject']
+
+    search_fields = ['question', 'answer']
+    list_filter = ['subject']
+
+
+admin.site.register(Card, CardAdmin)
+admin.site.register(Subject)
